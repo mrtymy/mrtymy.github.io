@@ -1,0 +1,442 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Murat Aktaş — Yazılım × Donanım · Manisa</title>
+<meta name="description" content="Murat Aktaş: Nexty AI kurucusu. Laptopları chip seviyesinde onarıyor, teknik servisleri yöneten yazılımları geliştiriyor. Next Services, NextAccounts, ChipLevel, Manisa Laptop Servisi.">
+<meta property="og:title" content="Murat Aktaş — Yazılım × Donanım">
+<meta property="og:description" content="Laptopları chip seviyesinde onarıyorum; teknik servisleri yöneten yazılımları da kendim yazıyorum.">
+<meta name="theme-color" content="#dceef6">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 26 26'%3E%3Ccircle cx='13' cy='13' r='12' fill='%23dceef6' stroke='%230a2233' stroke-width='1.5'/%3E%3Cpath d='M6 14c3-5 9-6 14-2-3 1-4 3-4 5-3-1-6-1-10-3z' fill='%230a2233'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders:wght@500;700;800&amp;family=Anton&amp;family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&amp;family=Martian+Mono:wght@400;500&amp;family=Schibsted+Grotesk:ital,wght@0,400;0,600;1,400&amp;display=swap">
+<style>
+body{margin:0}
+*{box-sizing:border-box}
+a{color:inherit;text-decoration:none}
+a:hover{color:inherit}
+.mono{font-family:'Martian Mono',ui-monospace,monospace}
+.disp{font-family:var(--display)}
+.pond{position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(120% 70% at 70% 10%,var(--bg0) 0%,transparent 60%),linear-gradient(180deg,var(--bg0) 0%,var(--bg1) 100%)}
+.light{position:fixed;inset:-10%;z-index:1;pointer-events:none;opacity:.55;filter:blur(30px);mix-blend-mode:soft-light}
+.light span{position:absolute;border-radius:50%;background:#fff;animation:drift 18s ease-in-out infinite alternate}
+.light span:nth-child(1){width:38vw;height:22vw;left:8%;top:12%}
+.light span:nth-child(2){width:28vw;height:30vw;left:58%;top:30%;animation-duration:23s;animation-delay:-6s}
+.light span:nth-child(3){width:34vw;height:18vw;left:22%;top:68%;animation-duration:27s;animation-delay:-11s}
+@keyframes drift{0%{transform:translate(0,0) scale(1)}50%{transform:translate(6vw,-4vh) scale(1.15)}100%{transform:translate(-4vw,5vh) scale(.9)}}
+.koi{position:fixed;inset:0;width:100%;height:100%;z-index:2;pointer-events:none}
+.over{position:relative;z-index:3}
+.gut{padding-left:clamp(16px,6vw,110px);padding-right:clamp(16px,6vw,110px)}
+.nav{position:sticky;top:14px;z-index:50;margin:14px clamp(16px,6vw,110px) 0;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:8px 8px 8px 22px;border-radius:999px;background:var(--glass);border:1px solid var(--line);-webkit-backdrop-filter:blur(14px) saturate(1.4);backdrop-filter:blur(14px) saturate(1.4)}
+.navlinks{display:flex;gap:4px}
+.navlinks a{font:500 15px/1 var(--display);letter-spacing:.06em;text-transform:uppercase;padding:14px 14px;border-radius:999px;transition:background .2s}
+.navlinks a:hover{background:var(--card)}
+.pill{display:inline-flex;align-items:center;gap:10px;min-height:44px;padding:12px 20px;border-radius:999px;border:0;cursor:pointer;background:var(--ink);color:var(--on);font:500 15px/1 var(--display);letter-spacing:.06em;text-transform:uppercase;transition:transform .25s,background .25s}
+.pill:hover{transform:translateY(-2px);color:var(--on)}
+.pill.ghost{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
+.pill.ghost:hover{color:var(--ink);background:var(--card)}
+.lang{display:flex;padding:3px;border-radius:999px;box-shadow:inset 0 0 0 1px var(--line)}
+.lang button{border:0;background:transparent;color:var(--dim);cursor:pointer;min-width:44px;min-height:38px;border-radius:999px;font:500 11px/1 'Martian Mono',monospace}
+.lang button.on{background:var(--ink);color:var(--on)}
+.menubtn{display:none}
+.tag{display:inline-flex;align-items:center;gap:10px;font:500 11px/1 'Martian Mono',monospace;letter-spacing:.16em;text-transform:uppercase;color:var(--dim)}
+.tag i{width:7px;height:7px;border-radius:50%;background:var(--acc);display:inline-block}
+.giant{font-family:var(--display);font-weight:800;font-size:clamp(96px,19vw,340px);line-height:.8;letter-spacing:-.02em;text-transform:uppercase;white-space:nowrap;margin:0 0 0 -.04em}
+.giant em{font-style:normal;color:var(--acc)}
+.h2{font-family:var(--display);font-weight:800;font-size:clamp(48px,7vw,112px);line-height:.88;letter-spacing:-.01em;text-transform:uppercase;margin:14px 0 0}
+.block{padding-top:clamp(90px,10vw,160px);padding-bottom:clamp(40px,5vw,80px)}
+.head{display:grid;grid-template-columns:1fr auto;align-items:end;gap:24px;margin-bottom:44px}
+.chip{border:1px solid var(--line);background:var(--card);color:var(--ink);min-height:44px;padding:0 16px;border-radius:999px;cursor:pointer;font:500 11px/1 'Martian Mono',monospace;letter-spacing:.08em;text-transform:uppercase;transition:background .2s,color .2s}
+.chip.on{background:var(--ink);color:var(--on);border-color:var(--ink)}
+.track{display:flex;gap:24px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding-bottom:8px}
+.track::-webkit-scrollbar{display:none}
+.card{flex:0 0 clamp(270px,28vw,420px);scroll-snap-align:start;display:flex;flex-direction:column;gap:16px}
+.thumb{position:relative;aspect-ratio:16/10;border-radius:20px;background:var(--bg2);overflow:hidden;border:1px solid var(--line);transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+.card:hover .thumb{transform:translateY(-6px) rotate(-.6deg)}
+.thumb .num{position:absolute;left:18px;bottom:6px;font-family:var(--display);font-weight:800;font-size:110px;line-height:1;color:var(--ink);opacity:.14}
+.thumb .play{position:absolute;right:16px;top:16px;width:48px;height:48px;border-radius:50%;background:var(--ink);color:var(--on);display:grid;place-items:center}
+.thumb .cat{position:absolute;left:16px;top:16px;padding:8px 12px;border-radius:999px;background:var(--glass);font:500 10px/1 'Martian Mono',monospace;letter-spacing:.1em;text-transform:uppercase}
+.arrow{width:48px;height:48px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer;display:grid;place-items:center}
+.arrow:hover{background:var(--ink);color:var(--on)}
+.row{display:grid;grid-template-columns:90px 1fr 1fr 40px;align-items:baseline;gap:24px;padding:30px 0;border-bottom:1px solid var(--line);transition:padding .5s cubic-bezier(.2,.7,.2,1)}
+.row:hover{padding-left:18px}
+.row:hover .ra{color:var(--acc);transform:translateX(4px)}
+.ra{transition:transform .3s,color .3s}
+.posts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.post{display:flex;flex-direction:column;gap:18px;min-height:320px;padding:28px;border-radius:22px;background:var(--card);border:1px solid var(--line);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+.post:hover{transform:translateY(-6px)}
+.feature{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:48px;align-items:center}
+.contact{background:var(--ink);color:var(--on);border-radius:40px 40px 0 0;padding-top:clamp(90px,10vw,160px);padding-bottom:40px;margin-top:clamp(60px,8vw,120px)}
+.contact .tag{color:var(--on);opacity:.75}
+.mail{display:inline-block;font-family:var(--display);font-weight:500;font-size:clamp(30px,5vw,80px);line-height:1.05;word-break:break-all;margin:40px 0 60px;padding-bottom:6px;background:linear-gradient(var(--acc),var(--acc)) 0 100%/0 3px no-repeat;transition:background-size .5s cubic-bezier(.2,.7,.2,1)}
+.mail:hover{background-size:100% 3px;color:var(--on)}
+.links{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));border-top:1px solid color-mix(in srgb,var(--on) 22%,transparent)}
+.links a{display:flex;justify-content:space-between;align-items:center;padding:26px 4px;font:500 18px/1 var(--display);letter-spacing:.06em;text-transform:uppercase;border-bottom:1px solid color-mix(in srgb,var(--on) 22%,transparent)}
+.links a:hover{color:var(--acc)}
+.brand{font:700 24px/1 var(--display);text-transform:uppercase;letter-spacing:.04em;padding:10px 0;transition:color .2s}
+.brand:hover{color:var(--acc)}
+.tick{display:flex;gap:10px;align-items:baseline;line-height:1.45}
+.tick:before{content:"";flex:0 0 8px;height:8px;border-radius:50%;background:var(--acc);transform:translateY(-1px)}
+.cl{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:48px;padding:clamp(28px,4vw,56px);border-radius:32px;background:var(--card);border:1px solid var(--line);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
+.stat{display:flex;flex-direction:column;gap:10px;padding:20px;border-radius:18px;background:var(--glass);border:1px solid var(--line)}
+.stat .mono{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
+.stat b{font:700 26px/1 var(--display);text-transform:uppercase}
+.mini{padding:8px 12px;border-radius:999px;border:1px solid var(--line);font:500 10px/1 'Martian Mono',monospace;letter-spacing:.06em;text-transform:uppercase}
+.rise{opacity:1}
+@supports (animation-timeline: view()){
+.rise{animation:rise linear both;animation-timeline:view();animation-range:entry 0% entry 45%}
+@keyframes rise{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:none}}
+}
+@media (prefers-reduced-motion: reduce){.rise{animation:none}.light span{animation:none}}
+@media (max-width:860px){
+.navlinks,.navcta{display:none}
+.menubtn{display:inline-flex}
+.hsub{flex-direction:column;align-items:flex-start !important}
+.feature{grid-template-columns:1fr}
+.cl{grid-template-columns:1fr}
+.posts{grid-template-columns:1fr}
+.row{grid-template-columns:56px 1fr 32px}
+.row .rdesc{grid-column:2 / 3}
+.links{grid-template-columns:repeat(2,minmax(0,1fr))}
+.head{grid-template-columns:1fr}
+.intro{flex-direction:column;gap:8px !important}
+}
+
+[hidden]{display:none !important}
+</style>
+</head>
+<body>
+<div style="--bg0: #f1f8fb; --bg1: #dceef6; --bg2: #b7daea; --ink: #0a2233; --on: #ffffff; --dim: #46606f; --glass: rgba(241,248,251,.62); --line: rgba(10,34,51,.14); --card: rgba(255,255,255,.55); --acc: #e23d4b; --display: &#39;Big Shoulders&#39;, Impact, sans-serif; position: relative; min-height: 100vh; background: var(--bg1); color: var(--ink); font-family: &#39;Schibsted Grotesk&#39;, system-ui, sans-serif; overflow-x: clip">
+<div class="pond" aria-hidden="true"></div>
+<div class="light" aria-hidden="true"><span></span><span></span><span></span></div>
+<canvas class="koi" id="koi" aria-hidden="true"></canvas>
+<header class="nav over">
+<a href="#top" style="display: flex; align-items: center; gap: 10px; font-family: var(--display); font-weight: 700; font-size: 22px; letter-spacing: .02em; text-transform: uppercase; min-height: 44px">
+<svg width="26" height="26" viewBox="0 0 26 26" fill="none" aria-hidden="true"><circle cx="13" cy="13" r="12" stroke="currentColor" stroke-width="1.5"></circle><path d="M6 14c3-5 9-6 14-2-3 1-4 3-4 5-3-1-6-1-10-3z" fill="currentColor"></path></svg>
+Murat Aktaş
+</a>
+<nav class="navlinks" aria-label="Ana menü">
+<a href="#isler">Projeler</a>
+<a href="#neler">Hizmetler</a>
+<a href="#chiplevel">ChipLevel</a>
+<a href="#yazilar">Yazılar</a>
+</nav>
+<div style="display: flex; align-items: center; gap: 8px">
+<a class="pill navcta" href="#iletisim">İletişim
+<svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 11L11 3M5 3h6v6" stroke="currentColor" stroke-width="1.6"></path></svg>
+</a>
+<button type="button" class="pill menubtn" aria-label="Menüyü aç" id="menubtn" aria-expanded="false" aria-controls="mnav">Menü</button>
+</div>
+</header>
+<nav id="mnav" hidden class="over" aria-label="Mobil menü" style="position: sticky; top: 84px; z-index: 49; margin: 10px 16px 0; padding: 10px; border-radius: 24px; background: var(--bg0); border: 1px solid var(--line); display: flex; flex-direction: column">
+<a href="#isler" data-close style="padding: 16px; font: 700 28px/1 var(--display); text-transform: uppercase">Projeler</a>
+<a href="#neler" data-close style="padding: 16px; font: 700 28px/1 var(--display); text-transform: uppercase">Hizmetler</a>
+<a href="#chiplevel" data-close style="padding: 16px; font: 700 28px/1 var(--display); text-transform: uppercase">ChipLevel</a>
+<a href="#yazilar" data-close style="padding: 16px; font: 700 28px/1 var(--display); text-transform: uppercase">Yazılar</a>
+<a href="#iletisim" data-close style="padding: 16px; font: 700 28px/1 var(--display); text-transform: uppercase">İletişim</a>
+</nav>
+
+<main class="over" id="top">
+<section class="gut" style="min-height: 92vh; display: flex; flex-direction: column; justify-content: center; position: relative; padding-top: 40px; padding-bottom: 90px">
+<div class="intro tag" style="display: flex; justify-content: space-between; gap: 24px; margin-bottom: 1.4vw">
+<span><i></i> Nexty AI kurucusu · Manisa</span>
+<span>Yazılım × Donanım</span>
+</div>
+<h1 class="giant">Murat<em>.</em></h1>
+<div class="hsub" style="display: flex; justify-content: space-between; align-items: flex-end; gap: 32px; margin-top: 2.4vw">
+<p style="margin: 0; max-width: 620px; font-size: clamp(20px,2vw,28px); line-height: 1.3">Laptopları <em style="font-style: italic">chip seviyesinde</em> onarıyorum; teknik servisleri yöneten yazılımları da kendim yazıyorum.</p>
+<div style="display: flex; gap: 8px; flex-wrap: wrap">
+<a class="pill" href="#isler">Projelere bak
+<svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M7 2v10M3 8l4 4 4-4" stroke="currentColor" stroke-width="1.6"></path></svg>
+</a>
+<a class="pill ghost" href="#iletisim">Proje görüşmesi</a>
+</div>
+</div>
+<div class="tag" style="position: absolute; bottom: 28px; left: clamp(16px,6vw,110px); font-size: 10px">
+<span style="display: inline-block; width: 40px; height: 1px; background: var(--dim)"></span> Aşağı kaydır
+</div>
+</section>
+
+<section class="gut" style="padding-top: 26px; padding-bottom: 26px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: var(--glass); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); display: flex; flex-wrap: wrap; align-items: center; gap: clamp(20px,4vw,56px)">
+<span class="tag">Markalarım</span>
+<a class="brand" href="https://nexty.com.tr" target="_blank" rel="noopener">Nexty AI</a>
+<a class="brand" href="https://manisalaptopservisi.com.tr" target="_blank" rel="noopener">Manisa Laptop Servisi</a>
+<a class="brand" href="https://laptopservisi.org" target="_blank" rel="noopener">LaptopServisi.org</a>
+<a class="brand" href="https://nextservices.cloud" target="_blank" rel="noopener">Next Services</a>
+<a class="brand" href="https://nextaccounts.cloud" target="_blank" rel="noopener">NextAccounts</a>
+<a class="brand" href="https://chiplevel.net" target="_blank" rel="noopener">ChipLevel</a>
+</section>
+
+<section class="gut block rise">
+<div class="feature">
+<div style="display: flex; flex-direction: column; gap: 20px">
+<span class="tag"><i></i> Öne çıkan · Canlı SaaS</span>
+<h2 class="h2" style="font-size: clamp(44px,5.4vw,84px)">Next Services</h2>
+<p style="margin: 0; font-size: 18px; line-height: 1.55; color: var(--dim)">GSM, bilgisayar, beyaz eşya, klima ve elektronik teknik servisleri için bulut tabanlı servis otomasyonu. Müşteri, cihaz, arıza, kalemli teklif, stok ve tahsilat tek yerde; sahada mobil uygulama, işletmede web paneli aynı veriyle senkron çalışır.</p>
+<ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 10px">
+<li class="tick">Alındıdan teslimata arıza ve süreç takibi</li>
+<li class="tick">Müşterinin linkten onayladığı kalemli teklif</li>
+<li class="tick">Firmaya özel metinlerle WhatsApp bilgilendirme</li>
+</ul>
+<div style="display: flex; gap: 8px; flex-wrap: wrap">
+<a class="pill" href="https://nextservices.cloud" target="_blank" rel="noopener">Siteye git
+<svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 11L11 3M5 3h6v6" stroke="currentColor" stroke-width="1.6"></path></svg>
+</a>
+<a class="pill ghost" href="#isler">Tüm projeler</a>
+</div>
+</div>
+<a href="https://nextservices.cloud" target="_blank" rel="noopener" class="thumb" style="aspect-ratio: 16/10; display: block; border-radius: 28px" aria-label="Next Services sitesini aç">
+<span class="cat">nextservices.cloud</span>
+<span style="position: absolute; left: 50%; top: 46%; transform: translate(-50%,-50%); font: 800 clamp(56px,7vw,110px)/.85 var(--display); text-transform: uppercase; text-align: center; color: var(--ink); white-space: nowrap">Next<br>Services</span>
+<span style="position: absolute; left: 16px; right: 16px; bottom: 16px; display: flex; gap: 8px; flex-wrap: wrap">
+<span class="cat" style="position: static">Web Panel</span>
+<span class="cat" style="position: static">iOS · App Store</span>
+<span class="cat" style="position: static">Android · Google Play</span>
+</span>
+</a>
+</div>
+</section>
+
+<section class="block" id="isler">
+<div class="gut head">
+<div>
+<span class="tag"><i></i> Ürünler ve markalar</span>
+<h2 class="h2">Kendi ürünlerim,<br>kendi atölyem</h2>
+</div>
+<div style="display: flex; flex-direction: column; align-items: flex-end; gap: 16px">
+<div style="display: flex; flex-wrap: wrap; gap: 8px" role="group" aria-label="Kategori filtresi">
+<button type="button" class="chip on" data-f="Hepsi" aria-pressed="true">Hepsi</button>
+<button type="button" class="chip" data-f="SaaS" aria-pressed="false">SaaS</button>
+<button type="button" class="chip" data-f="Servis" aria-pressed="false">Servis</button>
+<button type="button" class="chip" data-f="Topluluk" aria-pressed="false">Topluluk</button>
+</div>
+<div style="display: flex; gap: 8px">
+<button type="button" class="arrow" aria-label="Önceki" id="prev"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="1.6"></path></svg></button>
+<button type="button" class="arrow" aria-label="Sonraki" id="next"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.6"></path></svg></button>
+</div>
+</div>
+</div>
+<div class="track gut" id="track">
+<a class="card" data-cat="SaaS" href="https://nextservices.cloud" target="_blank" rel="noopener">
+<div class="thumb">
+<span class="cat">SaaS</span>
+<span class="play"><svg width="16" height="16" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 11L11 3M5 3h6v6" stroke="currentColor" stroke-width="1.6"></path></svg></span>
+<span style="position: absolute; left: 18px; right: 18px; top: 50%; transform: translateY(-50%); font: 800 clamp(34px,3.4vw,52px)/.9 var(--display); text-transform: uppercase">Next Services</span>
+<span class="num">01</span>
+</div>
+<span class="mono" style="font-size: 11px; letter-spacing: .1em; color: var(--dim)">01 · Canlı · Web · iOS · Android</span>
+<div style="font: 700 26px/1 var(--display); text-transform: uppercase">nextservices.cloud</div>
+<p style="margin: 0; color: var(--dim); line-height: 1.5">Teknik servisler için müşteri, arıza, teklif, stok ve tahsilat yönetimi.</p>
+</a>
+<a class="card" data-cat="SaaS" href="https://nextaccounts.cloud" target="_blank" rel="noopener">
+<div class="thumb">
+<span class="cat">SaaS</span>
+<span class="play"><svg width="16" height="16" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 11L11 3M5 3h6v6" stroke="currentColor" stroke-width="1.6"></path></svg></span>
+<span style="position: absolute; left: 18px; right: 18px; top: 50%; transform: translateY(-50%); font: 800 clamp(34px,3.4vw,52px)/.9 var(--display); text-transform: uppercase">NextAccounts</span>
+<span class="num">02</span>
+</div>
+<span class="mono" style="font-size: 11px; letter-spacing: .1em; color: var(--dim)">02 · Canlı · Web · Windows Agent</span>
+<div style="font: 700 26px/1 var(--display); text-transform: uppercase">nextaccounts.cloud</div>
+<p style="margin: 0; color: var(--dim); line-height: 1.5">İnternet kafe ve e-spor merkezleri için oyun hesabı yönetimi: 6 platform, şifre hiçbir ekranda görünmeden.</p>
+</a>
+<a class="card" data-cat="SaaS" href="https://nextplay.cloud" target="_blank" rel="noopener">
+<div class="thumb">
+<span class="cat">SaaS</span>
+<span class="play"><svg width="16" height="16" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 11L11 3M5 3h6v6" stroke="currentColor" stroke-width="1.6"></path></svg></span>
+<span style="position: absolute; left: 18px; right: 18px; top: 50%; transform: translateY(-50%); font: 800 clamp(34px,3.4vw,52px)/.9 var(--display); text-transform: uppercase">NextPlay</span>
+<span class="num">03</span>
+</div>
+<span class="mono" style="font-size: 11px; letter-spacing: .1em; color: var(--dim)">03 · Geliştiriliyor · Smart Save</span>
+<div style="font: 700 26px/1 var(--display); text-transform: uppercase">nextplay.cloud</div>
+<p style="margin: 0; color: var(--dim); line-height: 1.5">1450'den fazla oyunluk katalogla Netflix tarzı oyun vitrini ve sunucuda oyun kaydı saklama.</p>
+</a>
+<a class="card" data-cat="Topluluk" href="https://chiplevel.net" target="_blank" rel="noopener">
+<div class="thumb">
+<span class="cat">Topluluk</span>
+<span class="play"><svg width="16" height="16" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 11L11 3M5 3h6v6" stroke="currentColor" stroke-width="1.6"></path></svg></span>
+<span style="position: absolute; left: 18px; right: 18px; top: 50%; transform: translateY(-50%); font: 800 clamp(34px,3.4vw,52px)/.9 var(--display); text-transform: uppercase">ChipLevel</span>
+<span class="num">04</span>
+</div>
+<span class="mono" style="font-size: 11px; letter-spacing: .1em; color: var(--dim)">04 · Aktif · Discourse</span>
+<div style="font: 700 26px/1 var(--display); text-transform: uppercase">chiplevel.net</div>
+<p style="margin: 0; color: var(--dim); line-height: 1.5">Elektronik tamircileri için şema, boardview ve BIOS arşivi ile yardımlaşma forumu.</p>
+</a>
+<a class="card" data-cat="Servis" href="https://manisalaptopservisi.com.tr" target="_blank" rel="noopener">
+<div class="thumb">
+<span class="cat">Servis</span>
+<span class="play"><svg width="16" height="16" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 11L11 3M5 3h6v6" stroke="currentColor" stroke-width="1.6"></path></svg></span>
+<span style="position: absolute; left: 18px; right: 18px; top: 50%; transform: translateY(-50%); font: 800 clamp(34px,3.4vw,52px)/.9 var(--display); text-transform: uppercase">Manisa Laptop Servisi</span>
+<span class="num">05</span>
+</div>
+<span class="mono" style="font-size: 11px; letter-spacing: .1em; color: var(--dim)">05 · Şehzadeler · Haftanın 7 günü</span>
+<div style="font: 700 26px/1 var(--display); text-transform: uppercase">manisalaptopservisi.com.tr</div>
+<p style="margin: 0; color: var(--dim); line-height: 1.5">Kart seviyesinde notebook ve MacBook onarımı; ücretsiz arıza tespiti, 90 gün garanti.</p>
+</a>
+<a class="card" data-cat="Servis" href="https://laptopservisi.org" target="_blank" rel="noopener">
+<div class="thumb">
+<span class="cat">Servis</span>
+<span class="play"><svg width="16" height="16" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 11L11 3M5 3h6v6" stroke="currentColor" stroke-width="1.6"></path></svg></span>
+<span style="position: absolute; left: 18px; right: 18px; top: 50%; transform: translateY(-50%); font: 800 clamp(34px,3.4vw,52px)/.9 var(--display); text-transform: uppercase">LaptopServisi.org</span>
+<span class="num">06</span>
+</div>
+<span class="mono" style="font-size: 11px; letter-spacing: .1em; color: var(--dim)">06 · Türkiye geneli · Kargo ile</span>
+<div style="font: 700 26px/1 var(--display); text-transform: uppercase">laptopservisi.org</div>
+<p style="margin: 0; color: var(--dim); line-height: 1.5">Her ilden kargo ile laptop tamiri; çoğu arıza 1–3 iş gününde teslim.</p>
+</a>
+</div>
+</section>
+
+<section class="gut block rise" id="neler">
+<span class="tag"><i></i> Ne yapıyorum</span>
+<h2 class="h2">Lehimden<br>buluta kadar</h2>
+<div style="border-top: 1px solid var(--ink); margin-top: 48px">
+<a class="row" href="https://manisalaptopservisi.com.tr" target="_blank" rel="noopener">
+<span class="mono" style="font-size: 12px; color: var(--dim)">01</span>
+<span style="font: 700 clamp(28px,3vw,44px)/1 var(--display); text-transform: uppercase">Chip seviyesinde onarım</span>
+<span class="rdesc" style="color: var(--dim); line-height: 1.5">Kartı komple değiştirmek yerine arızalı parçayı bulup kart üzerinde onarıyorum. Anakart, sıvı temas, MacBook ve oyun laptopları; 90 gün garanti.</span>
+<span class="ra" style="font-size: 22px">→</span>
+</a>
+<a class="row" href="https://nexty.com.tr" target="_blank" rel="noopener">
+<span class="mono" style="font-size: 12px; color: var(--dim)">02</span>
+<span style="font: 700 clamp(28px,3vw,44px)/1 var(--display); text-transform: uppercase">SaaS ve masaüstü istemciler</span>
+<span class="rdesc" style="color: var(--dim); line-height: 1.5">Çok kiracılı abonelik sistemleri, güvenli Windows agent yazılımları, API entegrasyonları ve yüksek erişilebilirlikli sunucu mimarileri.</span>
+<span class="ra" style="font-size: 22px">→</span>
+</a>
+<a class="row" href="https://nextservices.cloud" target="_blank" rel="noopener">
+<span class="mono" style="font-size: 12px; color: var(--dim)">03</span>
+<span style="font: 700 clamp(28px,3vw,44px)/1 var(--display); text-transform: uppercase">iOS ve Android uygulamalar</span>
+<span class="rdesc" style="color: var(--dim); line-height: 1.5">App Store ve Google Play yayın süreçlerinden bulut senkronizasyonuna kadar uçtan uca. Next Services iki mağazada da yayında.</span>
+<span class="ra" style="font-size: 22px">→</span>
+</a>
+<a class="row" href="https://nexty.com.tr" target="_blank" rel="noopener">
+<span class="mono" style="font-size: 12px; color: var(--dim)">04</span>
+<span style="font: 700 clamp(28px,3vw,44px)/1 var(--display); text-transform: uppercase">Kurumsal web ve paneller</span>
+<span class="rdesc" style="color: var(--dim); line-height: 1.5">Hızlı açılan, arama motorlarına uyumlu, yönetim paneli ve iş akışı entegrasyonları olan kurumsal siteler ve B2B portallar.</span>
+<span class="ra" style="font-size: 22px">→</span>
+</a>
+</div>
+</section>
+
+<section class="gut block rise" id="chiplevel">
+<div class="cl">
+<div style="display: flex; flex-direction: column; gap: 20px">
+<span class="tag"><i></i> Topluluk · Teknik arşiv</span>
+<h2 class="h2" style="margin-top: 0">ChipLevel</h2>
+<p style="margin: 0; font-size: 19px; line-height: 1.55">Türkiye ve dünyadaki elektronik tamircileri için teknoloji ve teknik onarım platformu. Laptop, MacBook, GSM, konsol ve dron için şema, boardview ve BIOS arşivi; anakart arıza teşhisi ve teknisyen yardımlaşması.</p>
+<p style="margin: 0; line-height: 1.55; color: var(--dim)">OpenAI, NVIDIA ve Cloudflare'in de topluluklarında kullandığı Discourse altyapısı üzerinde çalışır; arka planda onu besleyen birçok ek servis var.</p>
+<div style="display: flex; gap: 8px; flex-wrap: wrap">
+<a class="pill" href="https://chiplevel.net" target="_blank" rel="noopener">Foruma katıl
+<svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 11L11 3M5 3h6v6" stroke="currentColor" stroke-width="1.6"></path></svg>
+</a>
+</div>
+</div>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; align-content: start">
+<div class="stat"><span class="mono">Altyapı</span><b>Discourse</b></div>
+<div class="stat"><span class="mono">Arşiv</span><b>Şema &amp; Boardview</b></div>
+<div class="stat"><span class="mono">Talepler</span><b>BIOS · Badcaps · Vinafix</b></div>
+<div class="stat"><span class="mono">Öğren</span><b>Eğitim bölümü</b></div>
+<div class="stat" style="grid-column: 1 / -1"><span class="mono">Kategoriler</span>
+<span style="display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px">
+<span class="mini">Dizüstü</span><span class="mini">Masaüstü</span><span class="mini">Ekran kartları</span><span class="mini">Oyun konsolları</span><span class="mini">Tabletler</span><span class="mini">Dronlar</span><span class="mini">3D yazıcılar</span><span class="mini">Araç ve scooter</span>
+</span>
+</div>
+</div>
+</div>
+</section>
+
+<section class="gut block rise" id="yazilar">
+<div class="head">
+<div>
+<span class="tag"><i></i> Atölyeden notlar</span>
+<h2 class="h2">Her arıza,<br>yazıya döküldü</h2>
+</div>
+<a class="pill ghost" href="https://laptopservisi.org" target="_blank" rel="noopener">Tüm yazılar</a>
+</div>
+<div class="posts">
+<a class="post" href="https://laptopservisi.org" target="_blank" rel="noopener">
+<span class="mono" style="font-size: 11px; letter-spacing: .1em; color: var(--dim)">5 Kasım 2026 · LaptopServisi.org</span>
+<span style="font: 700 32px/1 var(--display); text-transform: uppercase">MacBook Pro 14 M5'te ikinci ekran neden karanlık kalır?</span>
+<span style="color: var(--dim); line-height: 1.55">Apple'ın teknik özellik sayfasına göre hangi harici ekran kombinasyonları destekleniyor, hangileri değil.</span>
+<span style="margin-top: auto; display: flex; align-items: center; gap: 8px; font: 500 14px/1 var(--display); letter-spacing: .08em; text-transform: uppercase">Oku <span style="color: var(--acc)">→</span></span>
+</a>
+<a class="post" href="https://laptopservisi.org" target="_blank" rel="noopener">
+<span class="mono" style="font-size: 11px; letter-spacing: .1em; color: var(--dim)">4 Kasım 2026 · LaptopServisi.org</span>
+<span style="font: 700 32px/1 var(--display); text-transform: uppercase">MacBook Pro 14 M4'te ikinci ekran neden karanlık kalır?</span>
+<span style="color: var(--dim); line-height: 1.55">Yerleşik ekranla birlikte iki harici ekran: kapak kapalıyken ne değişiyor?</span>
+<span style="margin-top: auto; display: flex; align-items: center; gap: 8px; font: 500 14px/1 var(--display); letter-spacing: .08em; text-transform: uppercase">Oku <span style="color: var(--acc)">→</span></span>
+</a>
+<a class="post" href="https://laptopservisi.org" target="_blank" rel="noopener">
+<span class="mono" style="font-size: 11px; letter-spacing: .1em; color: var(--dim)">3 Kasım 2026 · LaptopServisi.org</span>
+<span style="font: 700 32px/1 var(--display); text-transform: uppercase">MacBook Air 15 M3'te ikinci ekran neden karanlık kalır?</span>
+<span style="color: var(--dim); line-height: 1.55">Kapak açıkken bir harici ekran, 6K ve 60Hz'e kadar. Yüksek tazeleme hızları nerede?</span>
+<span style="margin-top: auto; display: flex; align-items: center; gap: 8px; font: 500 14px/1 var(--display); letter-spacing: .08em; text-transform: uppercase">Oku <span style="color: var(--acc)">→</span></span>
+</a>
+</div>
+</section>
+
+<section class="contact gut" id="iletisim">
+<span class="tag"><i></i> İletişim</span>
+<h2 class="h2" style="color: var(--on)">Yeni bir proje<br>mi var? Konuşalım</h2>
+<a class="mail" href="mailto:info@nexty.com.tr">info@nexty.com.tr</a>
+<div class="mono" style="display: flex; flex-wrap: wrap; gap: 12px 40px; margin: -24px 0 48px; font-size: 12px; letter-spacing: .08em; line-height: 1.6">
+<a href="tel:+905535584350">0553 558 43 50</a>
+<span>Sakarya Mah. 1108 Sk. No: 3/A · Şehzadeler, Manisa</span>
+</div>
+<nav class="links" aria-label="Markalar ve iletişim">
+<a href="https://wa.me/905535584350" target="_blank" rel="noopener">WhatsApp <span aria-hidden="true">↗</span></a>
+<a href="https://nexty.com.tr" target="_blank" rel="noopener">Nexty AI <span aria-hidden="true">↗</span></a>
+<a href="https://manisalaptopservisi.com.tr" target="_blank" rel="noopener">Manisa Servis <span aria-hidden="true">↗</span></a>
+<a href="https://laptopservisi.org" target="_blank" rel="noopener">Kargo ile servis <span aria-hidden="true">↗</span></a>
+<a href="https://chiplevel.net" target="_blank" rel="noopener">ChipLevel <span aria-hidden="true">↗</span></a>
+</nav>
+<div class="mono" style="display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding-top: 64px; font-size: 10px; letter-spacing: .14em; text-transform: uppercase; opacity: .7">
+<span>© 2026 Murat Aktaş · Nexty AI</span>
+<span>Manisa, Türkiye</span>
+</div>
+</section>
+</main>
+</div>
+<script>
+(function(){
+var btn=document.getElementById('menubtn'),nav=document.getElementById('mnav');
+function setMenu(o){nav.hidden=!o;btn.setAttribute('aria-expanded',o?'true':'false')}
+btn.addEventListener('click',function(){setMenu(nav.hidden)});
+nav.querySelectorAll('[data-close]').forEach(function(a){a.addEventListener('click',function(){setMenu(false)})});
+var track=document.getElementById('track');
+document.getElementById('prev').addEventListener('click',function(){track.scrollBy({left:-track.clientWidth*.8,behavior:'smooth'})});
+document.getElementById('next').addEventListener('click',function(){track.scrollBy({left:track.clientWidth*.8,behavior:'smooth'})});
+var chips=document.querySelectorAll('.chip');
+chips.forEach(function(c){c.addEventListener('click',function(){
+var f=c.dataset.f;chips.forEach(function(x){var on=x===c;x.classList.toggle('on',on);x.setAttribute('aria-pressed',on?'true':'false')});
+document.querySelectorAll('.card').forEach(function(k){k.hidden=!(f==='Hepsi'||k.dataset.cat===f)});track.scrollTo({left:0})})});
+// koi
+var cv=document.getElementById('koi'),ctx,W,H,fish=[],mx=-9999,my=-9999,N=7;
+var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+function size(){var d=Math.min(window.devicePixelRatio||1,2);W=cv.clientWidth||innerWidth;H=cv.clientHeight||innerHeight;cv.width=Math.round(W*d);cv.height=Math.round(H*d);ctx=cv.getContext('2d');ctx.setTransform(d,0,0,d,0,0)}
+var pal=[['#f26b2a','#fff4e6'],['#ffffff','#e23d4b'],['#f5a23a','#1d1d1d'],['#fff7ee','#f26b2a'],['#e9472f','#ffffff']];
+function spawn(){var p=pal[Math.floor(Math.random()*pal.length)],x=Math.random()*W,y=Math.random()*H,tr=[];for(var i=0;i<60;i++)tr.push({x:x,y:y});
+return{x:x,y:y,a:Math.random()*Math.PI*2,v:.6+Math.random()*.7,len:70+Math.random()*60,turn:0,t:Math.random()*100,body:p[0],spot:p[1],trail:tr}}
+function draw(f){var seg=16,gap=Math.max(1,Math.round(f.len/seg/Math.max(f.v,.5)/1.4)),pts=[];
+for(var i=0;i<seg;i++){var p=f.trail[Math.min(i*gap,f.trail.length-1)];if(Math.abs(p.x-f.x)>400||Math.abs(p.y-f.y)>400)break;pts.push(p)}
+if(pts.length<4)return;var R=f.len*.13;function rad(i){return R*Math.pow(Math.sin(Math.PI*(.18+.82*(1-i/pts.length))),.9)*(i===0?.85:1)}
+ctx.save();ctx.globalAlpha=.14;ctx.fillStyle='#0a2233';for(i=0;i<pts.length;i++){ctx.beginPath();ctx.arc(pts[i].x+10,pts[i].y+14,rad(i),0,Math.PI*2);ctx.fill()}ctx.restore();
+var tl=pts[pts.length-1],pre=pts[pts.length-3],ta=Math.atan2(tl.y-pre.y,tl.x-pre.x)+Math.sin(f.t*3)*.35;
+ctx.save();ctx.globalAlpha=.85;ctx.fillStyle=f.body;ctx.beginPath();ctx.moveTo(tl.x,tl.y);
+ctx.lineTo(tl.x+Math.cos(ta-.5)*R*2.6,tl.y+Math.sin(ta-.5)*R*2.6);ctx.lineTo(tl.x+Math.cos(ta)*R*1.6,tl.y+Math.sin(ta)*R*1.6);ctx.lineTo(tl.x+Math.cos(ta+.5)*R*2.6,tl.y+Math.sin(ta+.5)*R*2.6);ctx.closePath();ctx.fill();
+var fp=pts[3],fa=Math.atan2(pts[2].y-pts[4].y,pts[2].x-pts[4].x);[-1,1].forEach(function(s){ctx.beginPath();ctx.ellipse(fp.x+Math.cos(fa+s*1.9)*R*1.1,fp.y+Math.sin(fa+s*1.9)*R*1.1,R*.9,R*.4,fa+s*.9,0,Math.PI*2);ctx.fill()});
+ctx.globalAlpha=.95;for(i=pts.length-1;i>=0;i--){ctx.beginPath();ctx.arc(pts[i].x,pts[i].y,rad(i),0,Math.PI*2);ctx.fill()}
+ctx.fillStyle=f.spot;[2,5,8].forEach(function(i){if(!pts[i])return;ctx.beginPath();ctx.arc(pts[i].x,pts[i].y,rad(i)*.55,0,Math.PI*2);ctx.fill()});ctx.restore()}
+function step(skip){ctx.clearRect(0,0,W,H);while(fish.length<N)fish.push(spawn());
+fish.forEach(function(f){f.t+=.05;f.turn+=(Math.random()-.5)*.02;f.turn*=.96;var m=80;if(f.x<m||f.x>W-m||f.y<m||f.y>H-m)f.turn+=.01;
+var dx=f.x-mx,dy=f.y-my,dist=Math.hypot(dx,dy),sp=f.v;if(dist<160){var d=Math.atan2(dy,dx)-f.a;d=Math.atan2(Math.sin(d),Math.cos(d));f.a+=d*.08;sp=f.v*2.6}
+f.a+=f.turn;f.x+=Math.cos(f.a)*sp;f.y+=Math.sin(f.a)*sp;
+if(f.x<-150)f.x=W+140;if(f.x>W+150)f.x=-140;if(f.y<-150)f.y=H+140;if(f.y>H+150)f.y=-140;
+f.trail.unshift({x:f.x+Math.sin(f.t)*.6,y:f.y+Math.cos(f.t)*.6});f.trail.length=60;if(!skip)draw(f)})}
+size();addEventListener('resize',size);addEventListener('pointermove',function(e){mx=e.clientX;my=e.clientY});
+if(reduce){for(var i=0;i<90;i++)step(true);step()}else{(function tick(){step();requestAnimationFrame(tick)})()}
+})();
+</script>
+</body>
+</html>
